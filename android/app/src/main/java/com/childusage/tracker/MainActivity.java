@@ -24,6 +24,7 @@ import com.childusage.tracker.model.AppInfo;
 import com.childusage.tracker.service.TrackingService;
 import com.childusage.tracker.util.AppScanner;
 import com.childusage.tracker.util.DeviceHelper;
+import com.childusage.tracker.util.MiuiSurvival;
 import com.childusage.tracker.util.SnapshotReporter;
 
 import java.util.List;
@@ -36,6 +37,7 @@ public class MainActivity extends AppCompatActivity {
     private EditText etNickname;
     private Button btnSave;
     private Button btnStart;
+    private Button btnMiui;
     private TextView tvStatus;
     private TextView tvApps;
 
@@ -57,8 +59,14 @@ public class MainActivity extends AppCompatActivity {
         etServerUrl.setText(DeviceHelper.getServerUrl(this));
         etNickname.setText(DeviceHelper.getNickname(this));
 
+        btnMiui = findViewById(R.id.btn_miui);
+
         btnSave.setOnClickListener(v -> saveConfig());
         btnStart.setOnClickListener(v -> startTracking());
+        btnMiui.setOnClickListener(v -> openMiuiSettings());
+
+        // Show MIUI button only on MIUI/HyperOS devices
+        btnMiui.setVisibility(MiuiSurvival.isMiui() ? View.VISIBLE : View.GONE);
 
         // Display scanned apps
         refreshAppList();
@@ -167,6 +175,22 @@ public class MainActivity extends AppCompatActivity {
             Intent intent = new Intent(Settings.ACTION_REQUEST_IGNORE_BATTERY_OPTIMIZATIONS);
             intent.setData(Uri.parse("package:" + getPackageName()));
             startActivity(intent);
+        }
+    }
+
+    private void openMiuiSettings() {
+        // Step 1: Open autostart settings
+        boolean opened = MiuiSurvival.openAutoStartSettings(this);
+        if (opened) {
+            Toast.makeText(this,
+                    "请在自启动管理中允许「使用统计」自启动，然后返回",
+                    Toast.LENGTH_LONG).show();
+        } else {
+            // Fallback: open battery settings
+            MiuiSurvival.openBatterySaverSettings(this);
+            Toast.makeText(this,
+                    "请在电池设置中将「使用统计」设为无限制",
+                    Toast.LENGTH_LONG).show();
         }
     }
 

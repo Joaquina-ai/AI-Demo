@@ -67,6 +67,14 @@
             android:layout_width="match_parent"
             android:layout_height="48dp"
             android:text="启动统计服务"
+            android:layout_marginBottom="12dp" />
+
+        <Button
+            android:id="@+id/btn_miui"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:text="红米/HyperOS 保活设置"
+            android:visibility="gone"
             android:layout_marginBottom="24dp" />
 
         <!-- Status -->

@@ -1,0 +1,13 @@
+{
+  "name": "child-usage-tracker",
+  "version": "1.0.0",
+  "private": true,
+  "description": "儿童手机使用时长统计系统",
+  "scripts": {
+    "server": "cd server && npm start",
+    "server:dev": "cd server && npm run dev",
+    "web:dev": "cd web && npm run dev",
+    "web:build": "cd web && npm run build",
+    "install:all": "cd server && npm install && cd ../web && npm install"
+  }
+}
