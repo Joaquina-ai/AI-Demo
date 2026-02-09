@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">使用统计</string>
+    <string name="accessibility_description">监测当前前台应用，用于统计使用时长。不会采集任何内容数据。</string>
+</resources>

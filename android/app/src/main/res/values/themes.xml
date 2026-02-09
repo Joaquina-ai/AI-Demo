@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="Theme.ChildUsageTracker" parent="Theme.MaterialComponents.Light.NoActionBar">
+        <item name="colorPrimary">#4F8CFF</item>
+        <item name="colorPrimaryVariant">#3B6FDB</item>
+        <item name="colorOnPrimary">#FFFFFF</item>
+        <item name="colorSecondary">#4F8CFF</item>
+        <item name="android:statusBarColor">#4F8CFF</item>
+    </style>
+</resources>
